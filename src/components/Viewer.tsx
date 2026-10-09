@@ -43,6 +43,7 @@ export interface HoverInfo {
 }
 
 interface Props {
+  active: boolean;
   items: SpriteEntry[];
   index: number;
   onIndexChange: (i: number) => void;
@@ -350,8 +351,9 @@ export function Viewer(p: Props) {
     [p.index, p.items.length, p.onIndexChange],
   );
 
-  // Keyboard shortcuts.
+  // Keyboard shortcuts (only for the visible tab).
   useEffect(() => {
+    if (!p.active) return;
     const onKeyDown = (e: KeyboardEvent) => {
       if ((e.target as HTMLElement).tagName === "INPUT") return;
       if (e.metaKey || e.ctrlKey) {
@@ -418,7 +420,7 @@ export function Viewer(p: Props) {
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("keyup", onKeyUp);
     };
-  }, [entry, go, fit, stepZoom, zoomCenter, p.onClose, p.onCopyImage]);
+  }, [p.active, entry, go, fit, stepZoom, zoomCenter, p.onClose, p.onCopyImage]);
 
   const panning = tool === "pan" || spaceHeld;
   const cursor = dragging ? "grabbing" : panning ? "grab" : "crosshair";

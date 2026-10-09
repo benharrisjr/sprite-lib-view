@@ -654,3 +654,107 @@ input[type="search"] {
 .picked:hover {
   outline: 2px solid var(--accent);
 }
+
+/* ---------- Tabs ---------- */
+
+.tab-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 6px 8px 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  flex-shrink: 0;
+  scrollbar-width: none;
+}
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 90px;
+  max-width: 220px;
+  height: 30px;
+  padding: 0 6px 0 12px;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 7px 7px 0 0;
+  color: var(--text-dim);
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+}
+.tab:hover {
+  background: var(--bg-elev-2);
+}
+.tab.active {
+  background: var(--bg-elev);
+  border-color: var(--border);
+  color: var(--text);
+  margin-bottom: -1px;
+  height: 31px;
+}
+.tab-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tab-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+}
+.tab:hover .tab-close,
+.tab.active .tab-close {
+  opacity: 0.7;
+}
+.tab-close:hover {
+  opacity: 1;
+  background: var(--bg-elev-2);
+}
+.tab-new {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 2px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.tab-new:hover {
+  background: var(--bg-elev-2);
+  color: var(--text);
+}
+
+/* Inactive tabs stay laid out (keeping scroll position) but hidden. */
+.tab-panels {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+.folder-view {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+.folder-view.inactive {
+  visibility: hidden;
+  pointer-events: none;
+}
+.error-text {
+  color: var(--danger);
+}

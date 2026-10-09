@@ -1,10 +1,19 @@
 mod clipboard;
 mod export;
+#[cfg(target_os = "macos")]
+mod menu;
 mod scan;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    tauri::Builder::default()
+    let builder = tauri::Builder::default();
+
+    #[cfg(target_os = "macos")]
+    let builder = builder
+        .menu(menu::build)
+        .on_menu_event(|app, event| menu::handle_event(app, event.id().as_ref()));
+
+    builder
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
         .manage(clipboard::ClipboardWorker::spawn())

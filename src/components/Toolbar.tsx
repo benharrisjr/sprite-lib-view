@@ -12,6 +12,7 @@ const SORT_LABELS: Record<SortKey, string> = {
 };
 
 interface Props {
+  active: boolean;
   root: string | null;
   loading: boolean;
   onOpenFolder: () => void;
@@ -41,6 +42,7 @@ export function Toolbar(p: Props) {
 
   // Cmd/Ctrl+F focuses search.
   useEffect(() => {
+    if (!p.active) return;
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "f") {
         e.preventDefault();
@@ -50,7 +52,7 @@ export function Toolbar(p: Props) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [p.active]);
 
   const toggleExt = (ext: string) => {
     const next = new Set(p.extFilter);

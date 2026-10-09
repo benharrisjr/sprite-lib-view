@@ -6,6 +6,7 @@ A cross-platform (macOS / Windows / Linux) desktop app for browsing a folder tre
 - **Copy Image** (pixels), **Copy File** (paste into Finder/Explorer), **Copy Path**.
 - **Export…** copies files to a folder you choose (`name (1).png` on collisions; optional "Keep folders on export").
 - **Multi-select** with Cmd/Ctrl-click, Shift-click, or Cmd/Ctrl+A, then copy or export in bulk.
+- **Tabs** to browse several folders at once; each tab keeps its own search, selection and scroll position, and open tabs are restored on launch.
 - **Viewer** with pan/zoom, pixel grid, background swatches, and a **color picker** with a saved palette.
 
 ## Setup
@@ -38,7 +39,17 @@ Bundles are written to `src-tauri/target/release/bundle/`. Each OS must be built
 | Copy image | Cmd/Ctrl+C |
 | Close | `Esc` |
 
-In the grid, Cmd/Ctrl+F focuses search and Esc clears the selection.
+## Tabs and grid
+
+| Action | Input |
+| --- | --- |
+| New tab (pick a folder) | Cmd/Ctrl+T or the **+** button |
+| Open folder in current tab | Cmd/Ctrl+O |
+| Close tab | Cmd/Ctrl+W, middle-click, or the tab's **×** |
+| Next / previous tab | Ctrl+Tab / Ctrl+Shift+Tab |
+| Jump to tab 1–8 / last tab | Cmd/Ctrl+1–8 / Cmd/Ctrl+9 |
+| Search | Cmd/Ctrl+F |
+| Select all / clear selection | Cmd/Ctrl+A / Esc |
 
 ## Notes
 
